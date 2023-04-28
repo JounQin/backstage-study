@@ -55,6 +55,7 @@ import {
 
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
+import { EntityCircleCIContent, isCircleCIAvailable } from '@backstage/plugin-circleci'
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -71,7 +72,9 @@ const cicdContent = (
     <EntitySwitch.Case if={isGithubActionsAvailable}>
       <EntityGithubActionsContent />
     </EntitySwitch.Case>
-
+    <EntitySwitch.Case if={isCircleCIAvailable}>
+      <EntityCircleCIContent />
+    </EntitySwitch.Case>
     <EntitySwitch.Case>
       <EmptyState
         title="No CI/CD available for this entity"
